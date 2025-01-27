@@ -1,6 +1,6 @@
 package entity;
 
-import configuration.Settings;
+import simulation.Settings;
 import java.util.ArrayList;
 import java.util.List;
 

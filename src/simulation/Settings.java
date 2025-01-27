@@ -1,4 +1,4 @@
-package configuration;
+package simulation;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
