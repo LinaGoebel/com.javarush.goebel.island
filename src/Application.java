@@ -29,34 +29,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Application {
 
-  // Чтобы удобно передать остров в другие классы
   public static Island applicationIsland;
 
   public static void main(String[] args) {
-    // 1. Загружаем настройки
     Settings.loadFromFile("settings.properties");
 
-    // 2. Создаём остров
     Island island = new Island();
-    applicationIsland = island; // Сохраняем ссылку на остров
+    applicationIsland = island;
 
-    // 3. Разбрасываем начальное количество животных и растений
     initializeIsland(island);
 
-    // 4. Запускаем движок симуляции
     int simulationDuration = Settings.getInt("SIMULATION_DURATION");
     SimulationEngine engine = new SimulationEngine(island, simulationDuration);
     engine.start();
   }
 
-  /**
-   * Метод для начального распределения животных и растений по острову.
-   */
   private static void initializeIsland(Island island) {
     Random random = new Random();
     int initialCount = Settings.getInt("INITIAL_ANIMAL_COUNT");
 
-    // Ограничиваем количество объектов по размеру острова
     if (initialCount > island.getColumnsCount() * island.getRowsCount()) {
       System.err.println("Ошибка: слишком много объектов для размера острова.");
       initialCount = island.getColumnsCount() * island.getRowsCount();
@@ -67,8 +58,7 @@ public class Application {
       int y = random.nextInt(island.getRowsCount());
       Location loc = island.getLocation(x, y);
 
-      // Генерируем случайное животное или растение
-      int n = random.nextInt(20); // Увеличиваем вероятность появления растений
+      int n = random.nextInt(20);
       switch (n) {
         case 0 -> {
           new Wolf(loc);

@@ -2,7 +2,6 @@ package entity.creature.animal.herbivore;
 
 import entity.Location;
 import entity.creature.Creature;
-import entity.creature.animal.Animal;
 import entity.creature.plant.Plant;
 
 
@@ -22,22 +21,20 @@ public class Sheep extends Herbivore {
 
   @Override
   protected double calculateEatProbability(Creature creature) {
-    // Овца ест только растения с вероятностью 100%
     if (creature instanceof Plant) {
       return 1.0;
     }
-    return 0.0; // Овца не ест животных
+    return 0.0;
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      // Допустим, овца может съесть до 5 единиц растения за раз
       int value = Math.min(plant.getQuantity(), 5);
-      plant.reduce(value); // Уменьшаем количество растения
+      plant.reduce(value);
       return value;
     }
-    return 0; // Если по каким-то причинам растение недоступно
+    return 0;
   }
 
   @Override

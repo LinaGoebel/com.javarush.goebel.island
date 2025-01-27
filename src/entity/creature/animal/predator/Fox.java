@@ -13,52 +13,44 @@ import java.util.Map;
 
 public class Fox extends Predator {
 
-  // Карта вероятностей поедания для лисы
   private static final Map<Class<? extends Creature>, Double> FOX_EATING_PROBABILITIES = new HashMap<>();
 
   static {
-    // Инициализируем вероятности из вашей таблицы
     FOX_EATING_PROBABILITIES.put(Rabbit.class, 0.70);
     FOX_EATING_PROBABILITIES.put(Mouse.class, 0.90);
     FOX_EATING_PROBABILITIES.put(Duck.class, 0.60);
     FOX_EATING_PROBABILITIES.put(Caterpillar.class, 0.40);
   }
 
-  // Конструктор принимает локацию
   public Fox(Location location) {
-    super(location); // Передаём локацию в родительский класс
-    this.weight = 8;                 // Вес лисы
-    this.satiety = 2;                // Начальная сытость
-    this.maxSatiety = 2;             // Максимальная сытость
-    this.maxPopulationPerCell = 30;  // Максимум особей на одной клетке
-    this.movementSpeed = 2;          // Скорость передвижения (клеток за ход)
+    super(location);
+    this.weight = 8;
+    this.satiety = 2;
+    this.maxSatiety = 2;
+    this.maxPopulationPerCell = 30;
+    this.movementSpeed = 2;
   }
 
   @Override
   protected double calculateEatProbability(Creature creature) {
-    // Возвращаем вероятность из таблицы или 0.0, если существа нет в карте
     return FOX_EATING_PROBABILITIES.getOrDefault(creature.getClass(), 0.0);
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
-    // Если съедено животное, возвращаем его вес
     if (creature instanceof Animal victim) {
       return (int) victim.weight;
     }
-    // Лиса не ест растения
     return 0;
   }
 
   @Override
   protected Animal createOffspring(Location location) {
-    // Создаём нового лисёнка
     return new Fox(location);
   }
 
   @Override
   public String getSymbol() {
-    // Символ лисы для отображения на карте
     return "🦊";
   }
 }

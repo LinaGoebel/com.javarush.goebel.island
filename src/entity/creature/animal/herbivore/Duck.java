@@ -11,24 +11,22 @@ public class Duck extends Herbivore {
   public Duck(Location location) {
     super(location);
     this.weight = 1;
-    this.maxSatiety = 1; // Максимальная сытость
-    this.satiety = 1;    // Начальная сытость
+    this.maxSatiety = 1;
+    this.satiety = 1;
     this.maxPopulationPerCell = 200;
-    this.movementSpeed = 4; // Перемещение на 4 клетки
+    this.movementSpeed = 4;
   }
 
   @Override
   public boolean eat(Creature creature) {
-    // Ест растения как обычное травоядное
     if (creature instanceof Plant) {
       super.eat(creature);
     }
 
-    // Дополнительно ест гусениц
     if (creature instanceof Caterpillar) {
-      double eatProb = 0.90; // Вероятность из таблицы
+      double eatProb = 0.90;
       if (ThreadLocalRandom.current().nextDouble() < eatProb) {
-        this.satiety++; // Утка получает сытость
+        this.satiety++;
         if (this.satiety > this.maxSatiety) {
           this.satiety = this.maxSatiety;
         }
@@ -39,25 +37,23 @@ public class Duck extends Herbivore {
 
   @Override
   protected double calculateEatProbability(Creature creature) {
-    // Для растений 100% вероятность
     if (creature instanceof Plant) {
       return 1.0;
     }
-    // Для гусениц 90% вероятность
     if (creature instanceof Caterpillar) {
       return 0.90;
     }
-    return 0.0; // Ничего другого не ест
+    return 0.0;
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      int value = Math.min(plant.getQuantity(), 1); // Ест 1 единицу растения
+      int value = Math.min(plant.getQuantity(), 1);
       plant.reduce(value);
       return value;
     } else if (creature instanceof Caterpillar) {
-      return 1; // Гусеница добавляет 1 единицу сытости
+      return 1;
     }
     return 0;
   }
@@ -68,6 +64,6 @@ public class Duck extends Herbivore {
   }
 
   public String getSymbol() {
-    return "🦆"; // Юникод-символ утки
+    return "🦆";
   }
 }

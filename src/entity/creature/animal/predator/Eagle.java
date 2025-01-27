@@ -8,10 +8,10 @@ import entity.creature.animal.herbivore.Duck;
 import entity.creature.animal.herbivore.Mouse;
 import entity.creature.animal.herbivore.Rabbit;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Eagle extends Predator {
+
   private static final Map<Class<? extends Creature>, Double> EAGLE_EATING_PROBABILITIES = new HashMap<>();
 
   static {
@@ -20,6 +20,7 @@ public class Eagle extends Predator {
     EAGLE_EATING_PROBABILITIES.put(Mouse.class, 0.90);
     EAGLE_EATING_PROBABILITIES.put(Duck.class, 0.80);
   }
+
   public Eagle(Location location) {
     super(location);
     this.weight = 6;
@@ -30,13 +31,11 @@ public class Eagle extends Predator {
   }
 
   protected double calculateEatProbability(Creature creature) {
-    // Возвращаем вероятность из таблицы или 0.0, если существа нет в карте
     return EAGLE_EATING_PROBABILITIES.getOrDefault(creature.getClass(), 0.0);
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
-    // Если съедено животное, возвращаем его вес
     if (creature instanceof Animal victim) {
       return (int) victim.weight;
     }

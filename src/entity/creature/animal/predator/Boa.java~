@@ -31,11 +31,13 @@ public class Boa extends Predator {
 
   @Override
   protected double calculateEatProbability(Creature creature) {
+    // Возвращаем вероятность из таблицы или 0.0, если существа нет в карте
     return BOA_EATING_PROBABILITIES.getOrDefault(creature.getClass(), 0.0);
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
+    // Если съедено животное, возвращаем его вес
     if (creature instanceof Animal victim) {
       return (int) victim.weight;
     }
@@ -44,6 +46,7 @@ public class Boa extends Predator {
 
   @Override
   protected Animal createOffspring(Location location) {
+    // Создаём нового лисёнка
     return new Boa(location);
   }
 

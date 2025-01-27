@@ -24,30 +24,29 @@ public class Rabbit extends Herbivore {
 
   @Override
   protected double calculateEatProbability(Creature creature) {
-    // Кролик ест только растения, вероятность 100%
+
     if (creature instanceof Plant) {
       return 1.0;
     }
-    return 0.0; // Кролик не ест животных
+    return 0.0;
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      // Кролик съедает до 2 единиц растения за раз
       int value = Math.min(plant.getQuantity(), 2);
-      plant.reduce(value); // Уменьшаем количество растения
+      plant.reduce(value);
       return value;
     }
-    return 0; // Если по какой-то причине растение недоступно
+    return 0;
   }
 
   @Override
   public Animal createOffspring(Location location) {
-    if (ThreadLocalRandom.current().nextDouble() < 0.8) { // 80% шанс на размножение
+    if (ThreadLocalRandom.current().nextDouble() < 0.8) {
       return new Rabbit(location);
     }
-    return null; // Не всегда рождается потомок
+    return null;
   }
 
   @Override

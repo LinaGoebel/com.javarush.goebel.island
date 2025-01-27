@@ -11,7 +11,6 @@ public class Settings {
 
   private static final Properties properties = new Properties();
 
-  // Значения по умолчанию
   static {
     properties.setProperty("COLUMNS_COUNT", "100");
     properties.setProperty("ROWS_COUNT", "20");
@@ -20,10 +19,6 @@ public class Settings {
     properties.setProperty("PLANT_GROWTH_RATE", "1");
   }
 
-  /**
-   * Пытается загрузить настройки из файла.
-   * Если файл не найден, используются значения по умолчанию.
-   */
   public static void loadFromFile(String filePath) {
     try (var input = new FileInputStream(filePath)) {
       properties.load(input);

@@ -11,15 +11,15 @@ public class Deer extends Herbivore {
     super(location);
     this.weight = 300;
     this.maxSatiety = 50;
-    this.satiety = 50; // Начальная сытость
+    this.satiety = 50;
     this.maxPopulationPerCell = 20;
-    this.movementSpeed = 4; // Перемещение на 4 клетки
+    this.movementSpeed = 4;
   }
 
   @Override
   protected double calculateEatProbability(Creature creature) {
     if (creature instanceof Plant) {
-      return 1.0; // Олень ест только растения
+      return 1.0;
     }
     return 0.0;
   }
@@ -27,7 +27,7 @@ public class Deer extends Herbivore {
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      int value = Math.min(plant.getQuantity(), 10); // Ест до 10 единиц растений
+      int value = Math.min(plant.getQuantity(), 10);
       plant.reduce(value);
       return value;
     }

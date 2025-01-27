@@ -23,11 +23,9 @@ class Predator extends Animal {
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
-    // Для животного — условно равен его весу (округлим до int)
     if (creature instanceof Animal a) {
       return (int) a.weight;
     }
-    // Для растений — пусть равно их nutritionValue
     if (creature instanceof Plant p) {
       return p.getNutritionValue();
     }
@@ -36,13 +34,11 @@ class Predator extends Animal {
 
   @Override
   protected Animal createOffspring(Location location) {
-    // Дефолтная реализация (возвращаем null).
-    // Конкретные хищники переопределят под себя
     return null;
   }
 
   @Override
   public String getSymbol() {
-    return "P"; // Поскольку абстрактный тип хищника
+    return "P";
   }
 }

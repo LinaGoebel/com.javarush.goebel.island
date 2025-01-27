@@ -40,9 +40,6 @@ public class Island {
     return rowsCount;
   }
 
-  /**
-   * Возвращает соседние локации (верх, низ, лево, право).
-   */
   public List<Location> getNeighbors(int x, int y) {
     List<Location> neighbors = new ArrayList<>();
     if (x > 0) {

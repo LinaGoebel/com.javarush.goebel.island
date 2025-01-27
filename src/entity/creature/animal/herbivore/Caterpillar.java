@@ -11,15 +11,15 @@ public class Caterpillar extends Herbivore {
     super(location);
     this.weight = 0.01;
     this.maxSatiety = 0;
-    this.satiety = 0; // Гусеница всегда "голодна", но ей не требуется пища
-    this.maxPopulationPerCell = 1000; // Множество гусениц на одной клетке
-    this.movementSpeed = 0; // Гусеница не перемещается
+    this.satiety = 0;
+    this.maxPopulationPerCell = 1000;
+    this.movementSpeed = 0;
   }
 
   @Override
   protected double calculateEatProbability(Creature creature) {
     if (creature instanceof Plant) {
-      return 1.0; // Гусеница ест только растения
+      return 1.0;
     }
     return 0.0;
   }
@@ -27,7 +27,7 @@ public class Caterpillar extends Herbivore {
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      int value = Math.min(plant.getQuantity(), 1); // Ест по 1 единице растения
+      int value = Math.min(plant.getQuantity(), 1);
       plant.reduce(value);
       return value;
     }

@@ -11,15 +11,15 @@ public class Boar extends Herbivore {
     super(location);
     this.weight = 400;
     this.maxSatiety = 50;
-    this.satiety = 50; // Начальная сытость
-    this.maxPopulationPerCell = 50; // Кабаны образуют крупные группы
-    this.movementSpeed = 2; // Перемещение на 2 клетки
+    this.satiety = 50;
+    this.maxPopulationPerCell = 50;
+    this.movementSpeed = 2;
   }
 
   @Override
   protected double calculateEatProbability(Creature creature) {
     if (creature instanceof Plant) {
-      return 1.0; // Кабан ест только растения
+      return 1.0;
     }
     return 0.0;
   }
@@ -27,7 +27,7 @@ public class Boar extends Herbivore {
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      int value = Math.min(plant.getQuantity(), 10); // Кабан ест до 10 единиц растения за раз
+      int value = Math.min(plant.getQuantity(), 10);
       plant.reduce(value);
       return value;
     }
@@ -42,6 +42,6 @@ public class Boar extends Herbivore {
 
   @Override
   public String getSymbol() {
-    return "🐗"; // Юникод-символ свиньи
+    return "🐗";
   }
 }

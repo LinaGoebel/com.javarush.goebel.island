@@ -45,29 +45,25 @@ public class Bear extends Predator {
 
   @Override
   protected double calculateEatProbability(Creature creature) {
-    // Возвращаем вероятность из таблицы или 0.0, если существа нет в карте
     return BEAR_EATING_PROBABILITIES.getOrDefault(creature.getClass(), 0.0);
   }
 
   @Override
   protected int calculateNutritionValue(Creature creature) {
-    // Если съедено животное, возвращаем его вес
     if (creature instanceof Animal victim) {
       return (int) victim.weight;
     }
-    // Лиса не ест растения
     return 0;
   }
 
   @Override
   protected Animal createOffspring(Location location) {
-    // Создаём нового лисёнка
     return new Bear(location);
   }
 
 
   public String getSymbol() {
-    return "🐻"; // Юникод-символ медведя
+    return "🐻";
   }
 }
 

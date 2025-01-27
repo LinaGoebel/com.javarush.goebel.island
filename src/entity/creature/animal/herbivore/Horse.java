@@ -13,15 +13,15 @@ public class Horse extends Herbivore {
     super(location);
     this.weight = 400;
     this.maxSatiety = 60;
-    this.satiety = 60; // Начинаем с максимальной сытости
+    this.satiety = 60;
     this.maxPopulationPerCell = 20;
-    this.movementSpeed = 4; // Лошадь перемещается на 4 клетки
+    this.movementSpeed = 4;
   }
 
   @Override
   protected double calculateEatProbability(Creature creature) {
     if (creature instanceof Plant) {
-      return 1.0; // Лошадь ест только растения
+      return 1.0;
     }
     return 0.0;
   }
@@ -29,7 +29,7 @@ public class Horse extends Herbivore {
   @Override
   protected int calculateNutritionValue(Creature creature) {
     if (creature instanceof Plant plant) {
-      int value = Math.min(plant.getQuantity(), 15); // Лошадь ест до 15 единиц за раз
+      int value = Math.min(plant.getQuantity(), 15);
       plant.reduce(value);
       return value;
     }
