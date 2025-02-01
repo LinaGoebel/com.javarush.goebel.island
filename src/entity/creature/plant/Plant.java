@@ -19,9 +19,11 @@ public class Plant extends Creature {
   }
 
   public void grow(int rate) {
-    this.quantity += rate * this.growthRate;
-    if (this.quantity > 20) {
-      this.quantity = 20;
+    if (this.quantity > 0) {
+      this.quantity += rate * this.growthRate;
+      if (this.quantity > 20) {
+        this.quantity = 20;
+      }
     }
   }
 

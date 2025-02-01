@@ -14,7 +14,7 @@ abstract class Herbivore extends Animal {
   @Override
   protected double calculateEatProbability(Creature creature) {
     if (creature instanceof Plant) {
-      return 1.0;
+      return 0.8;
     }
     return 0.0;
   }

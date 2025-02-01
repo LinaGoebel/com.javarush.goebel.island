@@ -47,7 +47,7 @@ public abstract class Animal extends Creature {
       if (foodConsumed > 0) {
         plant.reduce(foodConsumed);
         this.satiety += foodConsumed;
-        System.out.println(this.getSymbol() + " съел растение.");
+        System.out.println(this.getSymbol() + " ate the plant.");
         return true;
       }
     } else if (creature instanceof Animal prey) {
@@ -57,7 +57,7 @@ public abstract class Animal extends Creature {
         if (this.satiety > this.maxSatiety) {
           this.satiety = this.maxSatiety;
         }
-        System.out.println(this.getSymbol() + " съел " + prey.getSymbol());
+        System.out.println(this.getSymbol() + " ate " + prey.getSymbol());
         prey.die();
         return true;
       }
@@ -91,9 +91,10 @@ public abstract class Animal extends Creature {
       }
     }
 
-    if (sameSpeciesCount > 1 && ThreadLocalRandom.current().nextDouble() < 0.8) {
+    if (sameSpeciesCount > 1 && sameSpeciesCount < maxPopulationPerCell
+        && ThreadLocalRandom.current().nextDouble() < 0.8) {
       Animal offspring = createOffspring(location);
-      System.out.println(this.getSymbol() + " размножился!");
+      System.out.println(this.getSymbol() + " multiplied!");
       return offspring;
     }
     return null;

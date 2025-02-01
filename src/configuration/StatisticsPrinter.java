@@ -31,11 +31,11 @@ public class StatisticsPrinter {
       }
     }
 
-    System.out.println("[СТАТИСТИКА] Животных: " + totalAnimals + ", Растений: " + totalPlants);
+    System.out.println("[STATISTICS] Animals: " + totalAnimals + ", Plants: " + totalPlants);
   }
 
   private void printMap() {
-    System.out.println("=== Карта острова ===");
+    System.out.println("=== Map of the island ===");
     for (int y = 0; y < island.getRowsCount(); y++) {
       for (int x = 0; x < island.getColumnsCount(); x++) {
         Location loc = island.getLocation(x, y);

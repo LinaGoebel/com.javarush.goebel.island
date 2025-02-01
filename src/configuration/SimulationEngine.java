@@ -29,7 +29,7 @@ public class SimulationEngine {
     scheduler.scheduleAtFixedRate(animalManager::updateAnimals, 0, 2, TimeUnit.SECONDS);
     scheduler.scheduleAtFixedRate(statisticsPrinter::print, 0, 5, TimeUnit.SECONDS);
 
-    System.out.println("Симуляция запущена!");
+    System.out.println("Simulation running!");
   }
 
   public void stop() {
@@ -38,13 +38,13 @@ public class SimulationEngine {
         scheduler.shutdown();
         if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
           scheduler.shutdownNow();
-          System.out.println("Принудительное завершение симуляции.");
+          System.out.println("Forced termination of the simulation.");
         } else {
-          System.out.println("Симуляция остановлена.");
+          System.out.println("The simulation has been stopped.");
         }
       } catch (InterruptedException e) {
         scheduler.shutdownNow();
-        System.err.println("Ошибка при остановке симуляции: " + e.getMessage());
+        System.err.println("Error when stopping the simulation: " + e.getMessage());
       }
     }
   }
