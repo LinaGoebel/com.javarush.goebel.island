@@ -4,12 +4,17 @@ import entity.Island;
 import entity.Location;
 import entity.creature.plant.Plant;
 
-public class StatisticsPrinter {
+public class StatisticsPrinter implements Runnable {
 
   private final Island island;
 
   public StatisticsPrinter(Island island) {
     this.island = island;
+  }
+
+  @Override
+  public void run() {
+    printStatistics();
   }
 
   public void print() {

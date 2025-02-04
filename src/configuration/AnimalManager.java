@@ -7,12 +7,17 @@ import entity.creature.plant.Plant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalManager {
+public class AnimalManager implements Runnable {
 
   private final Island island;
 
   public AnimalManager(Island island) {
     this.island = island;
+  }
+
+  @Override
+  public void run() {
+    updateAnimals();
   }
 
   public void updateAnimals() {

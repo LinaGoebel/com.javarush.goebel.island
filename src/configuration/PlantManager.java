@@ -4,12 +4,17 @@ import entity.Island;
 import entity.Location;
 import entity.creature.plant.Plant;
 
-public class PlantManager {
+public class PlantManager implements Runnable {
 
   private final Island island;
 
   public PlantManager(Island island) {
     this.island = island;
+  }
+
+  @Override
+  public void run() {
+    growPlants();
   }
 
   public void growPlants() {

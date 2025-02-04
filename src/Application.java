@@ -19,5 +19,12 @@ public class Application {
     int simulationDuration = Settings.getInt("SIMULATION_DURATION");
     SimulationEngine engine = new SimulationEngine(island, simulationDuration);
     engine.start();
+
+    try {
+      Thread.sleep(20000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    engine.stop();
   }
 }
